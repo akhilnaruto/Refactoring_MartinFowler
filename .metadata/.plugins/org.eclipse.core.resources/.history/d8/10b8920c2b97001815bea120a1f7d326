@@ -1,0 +1,43 @@
+import java.util.Enumeration;
+import java.util.Vector;
+
+
+public class Customer {
+   private String _name;
+   private Vector _rentals = new Vector();
+   
+   public Customer(String name){
+	   this._name = name;
+   }
+   
+   public void addRental(Rental rental){
+	   _rentals.add(rental);
+   }
+   
+   public String getName(){
+	   return this._name;
+   }
+   
+   public String Statement(){
+	   double totalAmount = 0;
+	   int frequentRentalPoints = 0;
+	   Enumeration rentals = _rentals.elements();
+	   String result = "Rental record for "+ getName() + "\n";
+	   while(rentals.hasMoreElements()){
+		   double thisAmount = 0;
+		   Rental each = (Rental) rentals.nextElement();
+		   
+		   // determine amounts for each line
+		   switch (each.getMovie().getPriceCode()) {
+		case Movie.REGULAR:
+			 thisAmount += 2;
+			 if(each.getDaysRented() > 2)
+				 thisAmount += (each.getDaysRented() - 2) * 1.5;
+			break;
+
+		default:
+			break;
+		}
+	   }
+   }
+}
