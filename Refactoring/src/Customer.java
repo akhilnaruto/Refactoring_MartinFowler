@@ -43,6 +43,8 @@ public class Customer {
 	   result += "Amount owed is "+ String.valueOf(totalAmount) + "\n";
 	   result += "you earned "+ String.valueOf(frequentRentalPoints) + " Frequent renter points";
 	   return result;
+	   
+	   
    }
    
    private double amountFor(Rental each){
